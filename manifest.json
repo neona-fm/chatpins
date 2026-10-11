@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "ChatPins — избранные чаты ChatGPT",
+  "version": "1.1.0",
+  "description": "Сохраняйте важные чаты ChatGPT без лимита штатных закрепов: папки, поиск, заметки, сортировка, экспорт и резервная синхронизация.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Открыть ChatPins"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

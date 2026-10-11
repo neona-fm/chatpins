@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChatPins</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>⭐ ChatPins</h1>
+        <p id="countText">Загружаю чаты…</p>
+      </div>
+      <button id="saveCurrentBtn" class="primary" type="button">+ Текущий чат</button>
+    </header>
+
+    <section class="tools">
+      <label class="searchWrap">
+        <span>⌕</span>
+        <input id="searchInput" type="search" placeholder="Поиск по чатам и заметкам">
+      </label>
+
+      <div class="toolRow">
+        <select id="sortSelect" aria-label="Сортировка">
+          <option value="manual">Ручная сортировка</option>
+          <option value="recent">Недавно открытые</option>
+          <option value="title">По названию</option>
+        </select>
+        <button id="foldersBtn" type="button">Папки</button>
+        <button id="moreBtn" type="button">⋯</button>
+      </div>
+
+      <div id="moreMenu" class="popover hidden">
+        <button id="exportBtn" type="button">Экспорт JSON</button>
+        <button id="importBtn" type="button">Импорт JSON</button>
+        <button id="backupBtn" type="button">Обновить облачную копию</button>
+        <input id="importFile" type="file" accept="application/json,.json" hidden>
+      </div>
+    </section>
+
+    <nav id="folderChips" class="folderChips" aria-label="Фильтр по папкам"></nav>
+
+    <section id="statusBox" class="statusBox hidden"></section>
+    <section id="chatList" class="chatList"></section>
+
+    <section id="emptyState" class="empty hidden">
+      <div class="emptyIcon">📌</div>
+      <h2>Пока пусто</h2>
+      <p>Открой нужный чат ChatGPT и нажми «+ Текущий чат» или кнопку «Сохранить чат» прямо на странице.</p>
+    </section>
+  </main>
+
+  <dialog id="editDialog">
+    <form id="editForm" method="dialog" class="dialogCard">
+      <div class="dialogHead">
+        <h2>Редактировать чат</h2>
+        <button class="iconBtn" value="cancel" aria-label="Закрыть">×</button>
+      </div>
+
+      <label>
+        <span>Название</span>
+        <input id="editTitle" type="text" maxlength="180" required>
+      </label>
+
+      <label>
+        <span>Папка</span>
+        <select id="editFolder"></select>
+      </label>
+
+      <label>
+        <span>Заметка</span>
+        <textarea id="editNote" rows="5" maxlength="2500" placeholder="Например: здесь последняя рабочая версия плагина"></textarea>
+      </label>
+
+      <div class="dialogActions">
+        <button id="deleteChatBtn" class="dangerGhost" type="button">Удалить</button>
+        <div class="grow"></div>
+        <button value="cancel">Отмена</button>
+        <button id="saveEditBtn" class="primary" type="submit" value="default">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="foldersDialog">
+    <div class="dialogCard">
+      <div class="dialogHead">
+        <h2>Папки</h2>
+        <button id="closeFoldersBtn" class="iconBtn" type="button" aria-label="Закрыть">×</button>
+      </div>
+
+      <form id="newFolderForm" class="newFolderRow">
+        <input id="newFolderName" type="text" maxlength="80" placeholder="Новая папка" required>
+        <input id="newFolderColor" type="color" value="#7c3aed" aria-label="Цвет папки">
+        <button class="primary" type="submit">Добавить</button>
+      </form>
+
+      <div id="folderManagerList" class="folderManagerList"></div>
+    </div>
+  </dialog>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>

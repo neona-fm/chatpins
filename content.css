@@ -1,0 +1,106 @@
+#chatpins-floating-controls {
+  position: fixed;
+  right: 18px;
+  bottom: 96px;
+  z-index: 2147483646;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100vw - 28px);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#chatpins-save-button,
+#chatpins-open-button {
+  min-height: 38px;
+  border: 1px solid rgba(124, 58, 237, 0.34);
+  background: rgba(24, 24, 27, 0.94);
+  color: #fff;
+  box-shadow: 0 8px 28px rgba(0,0,0,.24);
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(10px);
+  transition: transform .15s ease, opacity .15s ease, border-color .15s ease;
+}
+
+#chatpins-save-button {
+  max-width: min(260px, calc(100vw - 82px));
+  padding: 8px 12px;
+  border-radius: 999px;
+  font: 600 13px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#chatpins-open-button {
+  width: 38px;
+  min-width: 38px;
+  padding: 0;
+  border-radius: 50%;
+  font: 700 16px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#chatpins-save-button:hover,
+#chatpins-open-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(167, 139, 250, 0.8);
+}
+
+#chatpins-save-button[data-saved="true"] {
+  background: rgba(76, 29, 149, 0.96);
+}
+
+#chatpins-open-button {
+  background: rgba(76, 29, 149, 0.96);
+}
+
+#chatpins-save-button[data-busy="true"],
+#chatpins-open-button[data-busy="true"] {
+  opacity: .65;
+  pointer-events: none;
+}
+
+#chatpins-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 144px;
+  z-index: 2147483647;
+  max-width: min(320px, calc(100vw - 36px));
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(24, 24, 27, .96);
+  color: #fff;
+  font: 500 13px/1.35 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-shadow: 0 8px 28px rgba(0,0,0,.28);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+#chatpins-toast[data-show="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  #chatpins-floating-controls {
+    right: 10px;
+    bottom: 86px;
+    gap: 6px;
+  }
+
+  #chatpins-save-button {
+    min-height: 36px;
+    padding: 7px 10px;
+  }
+
+  #chatpins-open-button {
+    width: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  #chatpins-toast {
+    right: 10px;
+    bottom: 132px;
+  }
+}
